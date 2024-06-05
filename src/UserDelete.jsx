@@ -8,7 +8,7 @@ const UserDelete = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetch(`https://65b413fe770d43aba47ae69e.mockapi.io/users/${id}`, {
+      const response = await fetch(`https://6657819d5c36170526450fee.mockapi.io/users/${id}`, {
         method: 'DELETE',
       });
       

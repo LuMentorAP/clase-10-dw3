@@ -1,45 +1,39 @@
-// 
-
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'bootswatch/dist/superhero/bootstrap.min.css';
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import App from './App';
-
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>,
-//   document.getElementById('root')
-// );
-
-// En el componente principal
 import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import UserDelete from './UserDelete';
+import UserEdit from './UserEdit';
 const UserList = () => {
-  const [users, setUsers] = useState([]);
+
+  const navigate = useNavigate()
+  const { id } = useParams();
+  const [user, setUser] = useState({});
   useEffect(() => {
     // Llamar a la función para obtener la lista de usuarios
-    fetchUsers();
+    fetchUser();
   }, []);
 
-  const fetchUsers = async () => {
+  const fetchUser = async () => {
     try {
-      const response = await fetch('URL_DE_TU_API');
+      const response = await fetch(`https://6657819d5c36170526450fee.mockapi.io/users/${id}`);
       const data = await response.json();
-      setUsers(data);
+      setUser(data);
     } catch (error) {
       console.error('Error en la solicitud: ', error);
     }
   };
+
+  const goHome = () => {
+    navigate('/')
+  }
+
+
   return (
     <div>
-      <h1>Lista de Usuarios</h1>
-      {/* Mostrar lista de usuarios */}
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name} - {user.email}</li>
-        ))}
-      </ul>
+      <h1>{user.name}</h1>
+     <p>{user.email}</p>
+     <button onClick={goHome}>Volver</button>
+     <UserDelete />
+     <UserEdit />
     </div>
   );
 };

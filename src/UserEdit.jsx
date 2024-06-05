@@ -16,7 +16,7 @@ const UserEdit = () => {
 
   const fetchUserDetails = async () => {
     try {
-      const response = await fetch(`https://65b413fe770d43aba47ae69e.mockapi.io/users/${id}`);
+      const response = await fetch(`https://6657819d5c36170526450fee.mockapi.io/users/${id}`);
       const data = await response.json();
       setUser(data);
       setName(data.name);
@@ -28,7 +28,7 @@ const UserEdit = () => {
 
 const handleUpdate = async () => {
     try {
-      const response = await fetch(`https://65b413fe770d43aba47ae69e.mockapi.io/users/${id}`, {
+      const response = await fetch(`https://6657819d5c36170526450fee.mockapi.io/users/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +37,8 @@ const handleUpdate = async () => {
       });
 
       if (response.ok) {
-        navigate(`/users/${id}`);
+        alert('usuario actualizado correctamente');
+        // navigate(`/users/${id}`);
       } else {
         console.error('Error al actualizar usuario');
       }
